@@ -58,15 +58,14 @@ Mitch Watchel, Johnny Warkentine, Patrick Ham, and Ross McWey (WWHaM!)
 Our Github pages: 
 * https://github.com/RMcwey
 * https://github.com/mitchelwachtel
-* https://github.com/jonathan-warkentinehttps://github.com/jonathan-warkentine
+* https://github.com/jonathan-warkentine
 * https://github.com/PatrickFHam
 <br>
 
-For any questions please contact us
+For any questions please contact me at `patrick.f.ham@gmail.com`... or my team-mates at:
 <br>
 * Mitch Wachtel at `mitchel.wachtel@gmail.com`
 * Johnny Warkentine at `jonathan.warkentine@gmail.com`
-* Patrick Ham at `patrick.f.ham@gmail.com`
 * Ross McWey at `rmcwey@hotmail.com`
 
 
