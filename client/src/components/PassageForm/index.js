@@ -4,7 +4,12 @@ import {
   Textarea,
   Button,
   Tooltip,
-  Spacer
+  Spacer,
+  Loading,
+  Modal,
+  Text,
+  Col,
+  Row
 } from "@nextui-org/react";
 import {IconButton} from "../../components/Icons/IconButton";
 import {ClipboardIcon} from "../../components/Icons/ClipboardIcon";
@@ -14,6 +19,20 @@ import Auth from "../../utils/auth";
 import { useMutation } from '@apollo/client';
 
 const PassageForm = (props) => {
+  
+  // MODAL FOR LOADING ... FUNCTIONS   \/  \/  \/  \/  \/  
+  const [showLoadingModal, setShowLoadingModal] = useState(false); 
+  const handlerToShowLoadingModal = () => {
+    setShowLoadingModal(true);
+    console.log("opened loading modal")
+  }
+  const handlerToCloseLoadingModal = () => {
+    setShowLoadingModal(false);
+    console.log("closed loading modal")
+  }
+  // MODAL FOR LOADING ... FUNCTIONS ^  ^  ^  ^  ^  ^  ^ 
+
+  
   const [passageText, setPassageText] = useState({
     passageBody: "",
     passageTitle: "",
@@ -25,9 +44,12 @@ const PassageForm = (props) => {
 
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-    
+    if (!passageText.passageBody || !passageText.passageTitle) {
+      return;
+    }
     // On form submit, perform mutation and pass in form data object as arguments
     // It is important that the object fields are match the defined parameters in `ADD_THOUGHT` mutation
+    handlerToShowLoadingModal();
     try {
       const {data} = await addPassage({
         variables: {
@@ -39,6 +61,7 @@ const PassageForm = (props) => {
     } catch (err) {
       console.error(err);
     }
+    handlerToCloseLoadingModal();
     setPassageText({passageBody: "", passageTitle: ""});
     props.refetch();  
   };
@@ -89,6 +112,25 @@ const PassageForm = (props) => {
         placeholder="You can type or paste-in your passage text here."
       ></Textarea>
       <Button ghost onClick={handleFormSubmit} color="success">Submit New Passage</Button>
+
+
+      {/* MODAL FOR LOADING \/  \/  \/  \/  \/  */}
+      <Modal noPadding open={showLoadingModal} onClose={handlerToCloseLoadingModal} close={handlerToCloseLoadingModal}>
+        <Modal.Body>
+          <Container>
+            <Col css={{ display: "flex", flexDirection: "column", justifyContent: "center", alignContent: "center" }}>
+              <Spacer y={2} />
+              <Loading size="xl" type="points-opacity"></Loading>
+              <Spacer y={1} />
+              <Row justify="center"><Text h3>Loading</Text></Row>
+              <Row justify="center"><Text h4>Using Natural Language Processing (NLP) to Process Your Passage!</Text></Row>
+              <Spacer y={2} />
+            </Col>
+          </Container>
+        </Modal.Body>
+      </Modal>
+      {/* MODAL FOR LOADING ^ ^ ^ ^ ^ ^ ^ ^ ^  */}
+
     </Container>
   );
 };
