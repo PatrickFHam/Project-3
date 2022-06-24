@@ -4,7 +4,7 @@ import { useQuery, useMutation } from '@apollo/client';
 import { Container, Text, Button, Progress, Grid, Spacer, Card, Row, Col, Modal} from '@nextui-org/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeftLong, faArrowRightLong } from '@fortawesome/free-solid-svg-icons';
-import '../styles/Bucket.css';
+import '../styles/Game.css';
 import blueleather from '../images/blueleather.jpg';
 import {ReloadIcon} from "../components/Icons/ReloadIcon";
 import {CloseIcon} from "../components/Icons/CloseIcon";
@@ -205,18 +205,20 @@ function Game () {
             <Text h3>Congratulations!</Text>
           </Modal.Header>
           <Modal.Body>
-            <Text h4>You finished this passage!!</Text>
-            <Text h5>What would you like to do?</Text>
+            <Col justify="center" align="center">
+              <Text h4>You finished this passage!!</Text>
+              <Text h5>What would you like to do?</Text>
+            </Col>
           </Modal.Body>
           <Modal.Footer>
             <Col>
-              <Button icon={<CloseIcon filled/>} auto color="secondary" onClick={handlerToEndOfGameModalCloseBtn} >
+              <Button className="game-modal-btn" icon={<CloseIcon filled/>} color="secondary" onClick={handlerToEndOfGameModalCloseBtn} >
                 Close this Message
               </Button>
-              <Button icon={<ReloadIcon fill="currentColor" filled />} auto color="success" onClick={handlerToEndOfGameModalReloadBtn}>
+              <Button className="game-modal-btn"  icon={<ReloadIcon fill="currentColor" filled />} color="success" onClick={handlerToEndOfGameModalReloadBtn}>
                 Reload this Passage
               </Button>
-              <Button as={Link} to={`/dashboard`} icon={<MenuIcon fill="currentColor" filled />} auto color="primary">
+              <Button className="game-modal-btn"  icon={<MenuIcon fill="currentColor" filled />} color="primary" as={Link} to={`/dashboard`} >
                 Go Back to Dashboard
               </Button>
             </Col>
