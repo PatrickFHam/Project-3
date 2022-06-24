@@ -3,3 +3,7 @@
   flex-direction: row;
   flex-flow: wrap;
 }
+
+.game-modal-btn {
+  width: 100%;
+}
